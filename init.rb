@@ -1,1 +1,3 @@
-# Include hook code here
+require 'firephp'
+
+ActionController::Base.extend(FirePHP)

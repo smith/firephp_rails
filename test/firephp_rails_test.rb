@@ -1,8 +1,11 @@
 require 'test_helper'
 
 class FirephpRailsTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  test "firephp method exists" do
+    assert ActionController::Base.private_methods.include?("firephp")
+  end
+
+  test "fb method exists" do
+    assert ActionController::Base.private_methods.include?("fb")
   end
 end
