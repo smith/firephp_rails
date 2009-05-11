@@ -1,6 +1,7 @@
 module FirePHP
   def self.included(controller)
     controller.after_filter :firephp_filter
+    controller.helper_method :firephp, :fb
   end
 
   protected
