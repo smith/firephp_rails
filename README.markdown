@@ -11,6 +11,8 @@ The second optional parameter is the log level as a symbol. This can be one of `
 
 Messages will not be logged in the production environment.
 
+This plugin is based on the [rails-firephp gem][2].
+
 Installation
 ============
 
@@ -50,3 +52,4 @@ Copyright (c) 2009 Nathan L Smith, released under the MIT license
 
 
   [1]: http://www.firephp.org
+  [2]: http://rubyforge.org/projects/rails-firephp/
