@@ -1,11 +1,47 @@
 require 'test_helper'
 
-class FirephpRailsTest < ActiveSupport::TestCase
+class FirePHPController < ActionController::Base
+  include FirePHP
+
+  def a
+    firephp("hi")
+    render :nothing => true
+  end
+
+
+  def b
+    fb("hi")
+    render :nothing => true
+  end
+end
+
+class FirePHPControllerTest < ActionController::TestCase
+  EXAMPLE_HEADER = "X-FirePHP-Data-100000000001"
+
   test "firephp method exists" do
-    assert ActionController::Base.private_methods.include?("firephp")
+    get :a
   end
 
   test "fb method exists" do
-    assert ActionController::Base.private_methods.include?("fb")
+    get :b
   end
+
+  test "headers not sent on non-firephp enabled request" do
+    get :a
+    assert !@response.headers.include?(EXAMPLE_HEADER)
+  end
+
+  test "headers sent on firephp enabled request" do
+    @request.env["HTTP_USER_AGENT"] = "FirePHP/"
+    get :a
+    assert @response.headers.include?(EXAMPLE_HEADER)
+  end
+
+  test "headers not sent in production mode" do
+    ENV["RAILS_ENV"] = "production"
+    get :a
+    assert !@response.headers.include?(EXAMPLE_HEADER)
+    ENV["RAILS_ENV"] = "test"
+  end
+
 end
