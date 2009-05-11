@@ -16,7 +16,7 @@ class FirePHPController < ActionController::Base
 end
 
 class FirePHPControllerTest < ActionController::TestCase
-  EXAMPLE_HEADER = "X-FirePHP-Data-100000000001"
+  EXAMPLE_HEADER = "X-Wf-Protocol-1"
 
   test "firephp method exists" do
     get :a
