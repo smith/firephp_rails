@@ -5,11 +5,10 @@ module FirePHP
 
   protected
     def firephp(obj = "", type = :log)
-      @firephp ||= {}
+      @firephp ||= []
       types = [:log, :info, :warn, :error] 
       type = (types.include?(type) ? type : :log).to_s.upcase
-      @firephp[type] ||= []
-      @firephp[type] << obj
+      @firephp << [type, obj]
     end
     alias_method :fb, :firephp
 
@@ -27,7 +26,8 @@ module FirePHP
       headers["X-FirePHP-Data-299999999999"]='"__SKIP__":"__SKIP__"},'
       headers["X-FirePHP-Data-300000000001"]='"FirePHP.Firebug.Console":['
       count=2
-      @firephp.each do |type, arr|
+      @firephp.each do |arr|
+        type = arr.shift
         next if !(type=~/^(LOG|INFO|WARN|ERROR)$/)
         arr.each do |a|
           headers["X-FirePHP-Data-3#{sprintf("%011d", count)}"]="[\"#{type}\",#{a.to_json}],"
