@@ -18,7 +18,7 @@ Installation
 
 Install the plugin:
 
-    script/plugin install http://github.com/smith/firephp_rails/tree/master
+    script/plugin install git://github.com/smith/firephp_rails.git
 
 Add to your application controller:
 
