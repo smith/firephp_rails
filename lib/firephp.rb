@@ -15,6 +15,7 @@ module FirePHP
 
   private
     def firephp_filter
+      @firephp ||= []
       # Add headers only when browser has FirePHP-Plugin
       return if !(request.headers["HTTP_USER_AGENT"]=~/FirePHP\//)
       # Do not add headers in production mode

@@ -13,6 +13,10 @@ class FirePHPController < ActionController::Base
     fb("hi")
     render :nothing => true
   end
+
+  def c
+    render :nothing => true
+  end
 end
 
 class FirePHPControllerTest < ActionController::TestCase
@@ -44,4 +48,8 @@ class FirePHPControllerTest < ActionController::TestCase
     ENV["RAILS_ENV"] = "test"
   end
 
+  test "headers not sent when firephp not used" do
+    get :c
+    assert !@response.headers.include?(EXAMPLE_HEADER)
+  end
 end
